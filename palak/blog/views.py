@@ -4,15 +4,16 @@ from .models import Post, Author, subscribe, Contact, Comment, SubComment
 import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.contrib.auth.models import auth
+from django.contrib.auth import login,logout
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-
 	if request.method == 'GET':
 		email = request.GET.get('email')
 		if email:
 			subscribe(email=email).save()
-
 	week_ago = datetime.date.today() - datetime.timedelta(days = 7)
 	trends = Post.objects.filter(time_upload__gte = week_ago).order_by('-read')
 	TopAuthors =Author.objects.order_by('-rate')[:2]
@@ -32,19 +33,29 @@ def index(request):
 		'trends': trends[:2],
 		'author_post':AuthorsPost,
 		'pop_post': Post.objects.order_by('-read')[:2],
+		'recent_post' : Post.objects.order_by('-time_upload')[:2],
 	}
 	return render(request, 'index.html', parms)
 
 
-
+@login_required
 def profile(request):
-	return render(request, 'profile.html')
+	user = request.user
+	if user is None:
+		return redirect('login')
+	else:
+		parms = {
+            'user':user,
+			'recent_post' : Post.objects.order_by('-time_upload')[:2]
+        }
+	return render(request, 'profile.html',parms)
 
 
 def about(request):
 	parms = {
 		'title': 'About | Gyanism',
 		'pop_post': Post.objects.order_by('-read')[:2],
+        'recent_post' : Post.objects.order_by('-time_upload')[:2],
 		}
 	return render(request, 'about.html', parms)
 
@@ -76,27 +87,12 @@ def post(request, id, slug):
         comments.append([c, SubComment.objects.filter(comment=c)])
 
     post_author = post.auther
-    if str(post_author) == 'Palak':
-        post_para = 'Hello! I’m NS , a Bihari who fluently speaks Bhojpuri apart from this , a front end Developer and a blogger.'
-        author_image = '/static/images/person_2.jpg'
+    if str(post_author) == 'palak':
+        post_para = 'Hello fellas , Im Palak Shivlani.A tech enthusiast and developer always open to exploring new fields.A person who believes truth always prevails.'
+        author_image = '/static/images/Palak.jpg'
     elif str(post_author) == 'Parmeshwar':
-        post_para = "I am Ekaansh Sahni, You can google me as ekesel. I don't write blogs, I created this! xD"
-        author_image = '/static/images/person_1.jpg'
-    elif str(post_author) == 'Shruti':
-        post_para = 'I am Shruti Singh. Currently I am pursuing b.tech CSE. I like writing blogs on social issues in hope that it might bring some changes :P'
-        author_image = '/static/images/person_4.jpg'
-    elif str(post_author) == 'Siddharth':
-        post_para = 'I like writing blogs about geopolitical national issues of importance. Further I sketch  imagination and depths of the heart in ensnaring lines! :D'
-        author_image = '/static/images/person_6.jpg'
-    elif str(post_author) == 'Astha':
-        post_para = 'Hey! I’m Astha Singh. I’ll be blogging as a mental health blogger. The only demon which really exist is in our head. For that we need a strong mental health. Which we can achieve by keeping a safe distance from negative thoughts. Being a law student I’m very aware of our surroundings. And the only need I see from my vision is a healthy and a strong mental health.'
-        author_image = '/static/images/person_5.jpg'
-    elif str(post_author) == 'Malya':
-        post_para = 'Hey I’m Malya Pandey. Being an avid reader and writer, I have always used literature to express myself. I seek therapy in art. Being a patriot and responsible citizen, I love to pen down my views on the latest issues of our country. Besides a writer, I am a dancer and an engineer in the making who loves to travel and wishes to see the entire world someday.'
-        author_image = '/static/images/person_3.jpg'
-    elif str(post_author) == 'Aradhana':
-        post_para = 'Sorry, I like to stay anonymous. Read the blog and enjoy'
-        author_image = '/static/images/profile.png'
+        post_para = "It’s me Parmeshwar Kumar Sahu.A tech learner, analyzer and a code freak.As, Student is more important than a teacher likewise learner learning is important than teaching."
+        author_image = '/static/images/Parmeshwar.jpg'
     else:
         post_para = 'Sorry, I like to stay anonymous. Read the blog and enjoy'
         author_image = '/static/images/profile.png'
@@ -108,6 +104,7 @@ def post(request, id, slug):
         'post_para': post_para,
         'author_image': author_image,
         'pop_post': Post.objects.order_by('-read')[:2],
+        'recent_post' : Post.objects.order_by('-time_upload')[:2]
     }
     return render(request, 'blog-single.html', parms)
 
@@ -123,6 +120,7 @@ def contact(request):
 	parms = {
 		'title': 'Contact | Gyanism',
 		'pop_post': Post.objects.order_by('-read')[:2],
+		'recent_post' : Post.objects.order_by('time_upload')[:2]
 		}
 	return render(request, 'contact.html', parms)
 
@@ -133,12 +131,13 @@ def search(request):
 		q = ' '
 	posts = Post.objects.filter(
 		Q(title__icontains = q) |
-		Q(overview__icontains = q)
+		Q(overview__icontains = q) 
 		).distinct()
 
 	parms = {
 		'posts':posts,
 		'title':'Search Results',
+        'recent_post' : Post.objects.order_by('-time_upload')[:2]
 		}
 
 	return render(request, 'search.html', parms)

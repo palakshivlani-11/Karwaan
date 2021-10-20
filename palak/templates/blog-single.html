@@ -1,24 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  {% load static %}
-<head>
-  <title>
-  {% if title %}
-    {{title}}
-  {% else %}
-    Karwaan - Let that knowledge sink in!
-  {% endif %}
-    </title>
-
-	<meta charset="utf-8">
+  <head>
+    <title>
+      {% if title %}
+        {{title}}
+      {% else %}
+        Karwaan - Let that Knowledge sink in!
+      {% endif %}
+        </title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	<meta name="description" content="The Blogging community for inquisitives!">
+    <meta name="author" content="Palak Shivlani">
+    <meta name="keywords" content="gyan, indianbloggers, indianblog, gyanism, indiangyan, indian, society, culture, gyani, culture, myth, debunk, reality">
+    
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/animate.css' %}">
-
+    
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
@@ -30,70 +32,344 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
     <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
 
-
+    
     <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
     <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
 
-</head>
-
-<div class="page">
+    <div class="page">
     <nav id="colorlib-main-nav" role="navigation">
       <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
       <div class="js-fullheight colorlib-table">
-        <div class="img" style="background-image: url({% static 'images/main.jpg' %});"></div>
-        <div class="<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
-    <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
-
-
-    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
-    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">colorlib-table-cell js-fullheight">
+        <div class="img" style="background-image: url('/static/images/logo.png');"></div>
+        <div class="colorlib-table-cell js-fullheight">
           <div class="row no-gutters">
             <div class="col-md-12 text-center">
-              <h1 class="mb-4"><a href="index.html" class="logo">Blog</a></h1>
+              <h1 class="mb-4"><a href="{% url 'home' %}" class="logo"></a></h1>
               <ul>
-                <li class="active"><a href="index.html"><span>Home</span></a></li>
-                <li><a href="about"><span>About</span></a></li>
-                <li><a href="blog.html"><span>Blog</span></a></li>
-				<li><a href="contact"><span>Contact</span></a></li>
-				<li><a href="accounts/register"><span>Register</span></a></li>
+                <li><a href="{% url 'home' %}"><span>Home</span></a></li>
+                <li><a href="{% url 'about' %}"><span>Founders</span></a></li>
+                <li><a href="{% url 'contact' %}"><span>Contact</span></a></li>
+				{% if user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link">Profile</a></li>
+                <li class="nav-item"><a href="{% url 'account_logout' %}" class="nav-link">sign Out</a></li>
+                {% else %}
+                <li class="nav-item"><a href="{% url 'account_login' %}" class="nav-link">Sign In</a></li>
+                <li class="nav-item"><a href="{% url 'account_signup' %}" class="nav-link">Sign Up</a></li>
+                {% endif %}
               </ul>
             </div>
           </div>
         </div>
       </div>
     </nav>
-
-
-
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/static/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-        <div class="col-md-9 ftco-animate pb-5 text-center">
-          <h2 class="mb-3 bread" style="color:white">{{ post.title }}</h2>
-          <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="/blogs/">Blog <i class="ion-ios-arrow-forward"></i></a></span> <span><i class="ion-ios-arrow-forward">{{ post.title }}</i></span></p>
+    
+    <div id="colorlib-page">
+      <header>
+      	<div class="container">
+	        <div class="colorlib-navbar-brand">
+	          <a class="colorlib-logo" href="{% url 'home' %}">Karwaan</a>
+	        </div>
+	        <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
         </div>
+      </header>
+
+      <section class="hero-wrap js-fullheight" style="background-image: url('{{ post.thumbnail.url }}');">
+      	<div class="overlay"></div>
+	      <div class="container-fluid px-0">
+	        <div class="row no-gutters text align-items-end js-fullheight justify-content-center" data-scrollax-parent="true">
+	          <div class="col-md-12 ftco-animate text-center">
+	            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="/blogs/">Blog <i class="ion-ios-arrow-forward"></i></a></span> <span><i class="ion-ios-arrow-forward">{{ post.title }}</i></span></p>
+	            <!--<h1 class="bread">{{ post.categories.title }}</h1>-->
+	          </div>
+	        </div>
+	      </div>
+      </section>
+
+      <section class="ftco-section">
+	      <div class="container">
+	        <div class="row">
+	          <div class="col-lg-8 ftco-animate">
+	            <h2 class="mb-4">{{ post.title }}</h2>
+	            <p>{{post.body_text|safe}}</p>
+	            <p>
+	              <img src="{{ post.image2.url }}" alt="" class="img-fluid">
+	            </p>
+	            
+
+	           
+	           
+
+	            
+
+	            <div class="tag-widget post-tag-container mb-5 mt-5">
+					<div class="tagcloud">
+					  {% for cat in post.categories.all %}
+							  <a href="#" class="tag-cloud-link">{{cat.title}}</a>, 
+							{% endfor %}
+					</div>
+				  </div>
+	            
+				  <div class="about-author d-flex p-4 bg-light">
+					<div class="bio mr-5">
+					  <img src="{{author_image}}" alt="Image placeholder" class="img-fluid mb-4">
+					</div>
+					<div class="desc">
+					  <h3>{{post_author}}</h3>
+					  <p>{{post_para}}</p>
+					</div>
+					</div>
+
+	            <div class="pt-5 mt-5">
+	             <h3 class="mb-5">Comments</h3>
+				 {% if user.is_authenticated %}
+	              <ul class="comment-list">
+					{% for cm in comments %}
+	                <li class="comment">
+	                  <div class="vcard bio">
+	                    <img src="{% static 'images/profile.png' %}" alt="Image placeholder">
+	                  </div>
+	                  <div class="comment-body bg-light">
+	                    <h3>{{cm.0.user.username}}</h3>
+	                    <div class="meta">{{cm.0.time}}</div>
+	                    <p>{{cm.0.comm}}</p>
+	                    <p id="{{cm.0.id}}"><button onclick="ReplyForm('{{cm.0.id}}')" class="reply">Reply</button></p>
+	                  </div>
+
+
+					  <ul class="children">
+						{% for subc in cm.1 %}
+						<li class="comment">
+						  <div class="vcard bio">
+							<img src="{% static 'images/profile.png' %}" alt="Image placeholder">
+						  </div>
+						  <div class="comment-body">
+							<h3>{{subc.user.username}}</h3>
+							<div class="meta">{{subc.time}}</div>
+							<p>{{subc.comm}}</p>
+						  </div>
+						</li>
+						{% endfor %}
+					  </ul>
+	                </li>
+					{% endfor %}        
+                    </ul>
+
+	                
+
+	                  
+
+
+	                
+	              <!-- END comment-list -->
+
+				  <script type="text/javascript">
+					function ReplyForm(id) {
+					  let elm = `<form method="POST" class="p-5 bg-light">
+								  {% csrf_token %}
+					  <div class="form-group">
+					  <input type='text' value='${id}' name = 'comm_id' style="display:none;" readonly/>
+						<label for="message">Comment</label>
+						<textarea name="comm" id="message" cols="30" rows="3" class="form-control"></textarea>
+					  </div>
+					  <div class="form-group">
+						<input type="submit" value="Post Comment" class="btn btn-primary py-3">
+					  </div>
+	
+					</form>`;
+					document.getElementById(id).innerHTML = elm;
+					}
+				  </script>
+
+
+	              
+	              <div class="comment-form-wrap pt-5">
+	                <h3 class="mb-5">Leave a comment</h3>
+	                <form method="POST" class="comment-form p-5 bg-light">
+						{% csrf_token %}
+	                  <div class="form-group">
+	                    <label for="message">Comment</label>
+	                    <textarea name="comm" id="message" cols="30" rows="3" class="form-control"></textarea>
+	                  </div>
+	                  <div class="form-group">
+						<input type="submit" value="Post Comment" class="btn btn-primary py-3">
+					  </div>
+	                  
+	                  
+
+	                </form>
+	              </div>
+				  {% else %}
+				  <ul class="comment-list">
+					{% for cm in comments %}
+	                <li class="comment">
+	                  <div class="vcard bio">
+	                    <img src="{% static 'images/profile.png' %}" alt="Image placeholder">
+	                  </div>
+	                  <div class="comment-body bg-light">
+	                    <h3>{{cm.0.user.username}}</h3>
+	                    <div class="meta">{{cm.0.time}}</div>
+	                    <p>{{cm.0.comm}}</p>
+	                    <p id="{{cm.0.id}}"><button onclick="ReplyForm('{{cm.0.id}}')" class="reply">Reply</button></p>
+	                  </div>
+
+
+					  <ul class="children">
+						{% for subc in cm.1 %}
+						<li class="comment">
+						  <div class="vcard bio">
+							<img src="{% static 'images/profile.png' %}" alt="Image placeholder">
+						  </div>
+						  <div class="comment-body">
+							<h3>{{subc.user.username}}</h3>
+							<div class="meta">{{subc.time}}</div>
+							<p>{{subc.comm}}</p>
+						  </div>
+						</li>
+						{% endfor %}
+					  </ul>
+	                </li>
+					{% endfor %}        
+                    </ul>
+					<li><a href="{% url 'account_login' %}" class="nav-link text-right text-info">Sign in to comment</a></li>
+                    <li><a href="{% url 'account_signup' %}" class="nav-link text-right text-info">Sign Up to comment</a></li>
+					{% endif %}
+	            </div>
+
+
+
+	          </div> <!-- .col-md-8 -->
+
+	          <div class="col-lg-4 sidebar ftco-animate">
+	            <div class="sidebar-box">
+	              <form action="{% url 'search' %}" class="search-form" method="GET">
+	                <div class="form-group mb-0">
+	                  <span class="icon icon-search"></span>
+	                  <input type="text" class="form-control" placeholder="Search">
+	                </div>
+	              </form>
+	            </div>
+	           
+
+	            <div class="sidebar-box ftco-animate">
+	              <h3>Popular Posts</h3>
+				  {% for post in pop_post %}
+	              <div class="block-21 mb-4 d-flex">
+	                <a class="blog-img mr-4" style="background-image: url('{{post.thumbnail.url}}');"></a>
+	                <div class="text">
+	                  <h3 class="heading"><a href="#">{{post.title}}</a></h3>
+	                  <div class="meta">
+	                    <div><a href="#"><span class="icon-calendar"></span>{{post.time_upload}}</a></div>
+	                    <div><a href="#"><span class="icon-person"></span>{{post.auther}}</a></div>
+	                    <div><a href="#"><span class="icon-eye"></span> {{post.read}}</a></div>
+	                  </div>
+	                </div>
+	              </div>
+				  {% endfor %}
+	              
+
+	            
+
+	            
+	          </div>
+
+	        </div>
+	      </div>
+	    </section> <!-- .section -->
+
+      
+      <footer class="ftco-footer ftco-section img">
+	    	<div class="overlay"></div>
+	      <div class="container">
+	        <div class="row mb-5">
+	          <div class="col-lg-3">
+	            <div class="ftco-footer-widget mb-4">
+	              <h2 class="ftco-heading-2 logo"><a href="{% url 'home' %}">Karwaan</a></h2>
+	              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+	              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+	                <li class="ftco-animate"><a href="https://twitter.com/PShivlani"><span class="icon-twitter"></span></a></li>
+	                <li class="ftco-animate"><a href="https://www.facebook.com/palak.shivlani/"><span class="icon-facebook"></span></a></li>
+	                <li class="ftco-animate"><a href="https://www.instagram.com/palak_shivlani/"><span class="icon-instagram"></span></a></li>
+	              </ul>
+	            </div>
+	          </div>
+	          <div class="col-lg-4">
+	            <div class="ftco-footer-widget mb-4">
+	              <h2 class="ftco-heading-2">Recent Blog</h2>
+				  {% for post in recent_post %}
+	              <div class="block-21 mb-4 d-flex">
+	                <a class="blog-img mr-4" style="background-image: url('{{post.thumbnail.url}}');"></a>
+	                <div class="text">
+	                  <h3 class="heading"><a href="#">{{post.title}}</a></h3>
+	                  <div class="meta">
+	                    <div><a href="#"><span class="icon-calendar"></span> {{post.time_upload}}</a></div>
+	                    <div><a href="#"><span class="icon-person"></span> {{post.auther}}</a></div>
+	                    <div><a href="#"><span class="icon-eye"></span> {{post.read}}</a></div>
+	                  </div>
+	                </div>
+	              </div>
+				  {% endfor %}
+	              
+	            </div>
+	          </div>
+	          <div class="col-lg-2">
+	             <div class="ftco-footer-widget mb-4 ml-md-4">
+	              <h2 class="ftco-heading-2">Site Links</h2>
+	              <ul class="list-unstyled">
+	                <li><a href="{% url 'home' %}" class="py-2 d-block">Home</a></li>
+	                <li><a href="{% url 'about' %}" class="py-2 d-block">About</a></li>
+	                <li><a href="{% url 'contact' %}" class="py-2 d-block">Contact</a></li>
+	              </ul>
+	            </div>
+	          </div>
+	          <div class="col-lg-3">
+	            <div class="ftco-footer-widget mb-4">
+	            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+	            	<div class="block-23 mb-3">
+		              <ul>
+		                <li><span class="icon icon-map-marker"></span><span class="text">Ratandeep Apartment phase 3 flat 51 nirala nagar Kanpur</span></li>
+		                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+91 7887257977</span></a></li>
+		                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">palakshivlani2001@gmail.com</span></a></li>
+		              </ul>
+		            </div>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="row">
+	          <div class="col-md-12 text-center">
+
+	            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+	  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+	          </div>
+	        </div>
+	      </div>
+	    </footer>
+
+      <!-- loader -->
+      <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
       </div>
     </div>
-  </section>
 
 
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/aos.js' %}"></script>
+    <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'js/scrollax.min.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="{% static 'js/google-map.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    
+  </body>
+</html>

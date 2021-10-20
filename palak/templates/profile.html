@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Founders</title>
+    <title>Profile</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -41,10 +41,10 @@
               -<h1 class="mb-4"><a href="{% url 'home' %}" class="logo"></a></h1>
               <ul>
                 <li><a href="{% url 'home' %}"><span>Home</span></a></li>
-                <li class="active"><a href="{% url 'about' %}"><span>About</span></a></li>
+                <li ><a href="{% url 'about' %}"><span>About</span></a></li>
 				<li><a href="{% url 'contact' %}"><span>Contact</span></a></li>
 				{% if user.is_authenticated %}
-                <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link">Profile</a></li>
+                <li class="nav-item active"><a href="{% url 'profile' %}" class="nav-link">Profile</a></li>
                 <li class="nav-item"><a href="{% url 'account_logout' %}" class="nav-link">sign Out</a></li>
                 {% else %}
                 <li class="nav-item"><a href="{% url 'account_login' %}" class="nav-link">Sign In</a></li>
@@ -56,50 +56,67 @@
         </div>
       </div>
     </nav>
-    
+
+
     <div id="colorlib-page">
-      <header>
-      	<div class="container">
-	        <div class="colorlib-navbar-brand">
-	          <!--<a class="colorlib-logo" href="index.html">Erase</a>-->
-			</div>
-	        <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-        </div>
-      </header>
+        <header>
+            <div class="container">
+              <div class="colorlib-navbar-brand">
+                <!--<a class="colorlib-logo" href="index.html">Erase</a>-->
+              </div>
+              <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+          </div>
+        </header>
+  
+        <section class="hero-wrap js-fullheight" style="background-image: url('/static/images/bg_1.jpg');">
+            <div class="overlay"></div>
+            <div class="container-fluid px-0">
+              <div class="row no-gutters text js-fullheight align-items-end justify-content-center" data-scrollax-parent="true">
+                <div class="col-md-12 ftco-animate text-center">
+                  <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home</a></span> <span>Profile</span></p>
+                  <h1 class="bread">Profile</h1>
+                </div>
+              </div>
+            </div>
+        </section>
 
-      <section class="hero-wrap js-fullheight" style="background-image: url('/static/images/bg_1.jpg');">
-      	<div class="overlay"></div>
-	      <div class="container-fluid px-0">
-	        <div class="row no-gutters text js-fullheight align-items-end justify-content-center" data-scrollax-parent="true">
-	          <div class="col-md-12 ftco-animate text-center">
-	            <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home</a></span> <span>Founders</span></p>
-	            <h1 class="bread">Founders</h1>
-	          </div>
-	        </div>
-	      </div>
-      </section>
 
-	    <section class="ftco-section ftco-no-pt ftco-no-pb ftco-about ftco-counter">
+        <section class="ftco-section ftco-no-pt ftco-no-pb ftco-about ftco-counter">
 	    	<div class="container">
 		    	<div class="row no-gutters d-flex">
-	    			<div class="col-md-12 col-lg-6 d-flex align-items-stretch">
+	    			<!--<div class="col-md-12 col-lg-6 d-flex align-items-stretch">
 	    				<div class="img-about img d-flex align-items-stretch">
-		    				<div class="img d-flex align-self-stretch align-items-center" style="background-image: url('/static/images/Palak.jpg');">
+		    				<div class="img d-flex align-self-stretch align-items-center" style="background-image: url('/static/images/Mario.png');">
 		    				</div>
 	    				</div>
-	    			</div>
+	    			</div>-->
 	    			<div class="col-md-12 col-lg-6 pl-lg-5 py-5 d-flex align-items-center">
 	    				<div class="p-0 px-lg-5 p-lg-0">
 		    				<div class="row justify-content-start pb-3">
 				          <div class="col-md-12 heading-section ftco-animate">
 				          	<!--<span class="subheading">Welcome</span>-->
-				            <h2 class="mb-4">Palak Shivlani</h2>
-				            <p style="font-weight: bold;">Hola! Readers</p>
-				            <p>Meet Palak Shivlani,<br>
-				             A confident woman with great dreams and aspirations.<br>
-				             An enthusiastic reader and a graceful dancer. <br>
-				             A computer science student having keen interest in learning new things and updating her knowledge house.<br>
-				             A confident speaker ,always ready to motivate others through her thoughts.</p>
+				            <h2 class="mb-4">Welcome,{{user.username}}</h2>
+				            <p style="font-weight: bold;">Hey ! How You Doing</p>
+				            
+
+
+                            <p>Want to Sign out>:
+                                <a href="{% url 'account_logout' %}" class="btn btn-info btn-lg">
+                                  <span class="glyphicon glyphicon-log-out"></span> Log out
+                                </a>
+                              </p> 
+
+							  <p>Want to Change Password?>:
+                                <a href="{% url 'account_change_password' %}" class="btn btn-info btn-lg">
+                                  <span class="glyphicon glyphicon-log-out"></span> Change Password
+                                </a>
+                              </p> 
+
+							  <p>Want to Change E-mail>:
+                                <a href="{% url 'account_email' %}" class="btn btn-info btn-lg">
+                                  <span class="glyphicon glyphicon-log-out"></span> Change Email
+                                </a>
+                              </p> 
 				          </div>
 				        </div>
 				        <div class="row">
@@ -138,65 +155,8 @@
 	    <br></br>
 
 
-	    <section class="ftco-section ftco-no-pt ftco-no-pb ftco-about ftco-counter">
-	    	<div class="container">
-		    	<div class="row no-gutters d-flex">
-	    			<div class="col-md-12 col-lg-6 d-flex align-items-stretch">
-	    				<div class="img-about img d-flex align-items-stretch">
-		    				<div class="img d-flex align-self-stretch align-items-center" style="background-image: url('/static/images/Parmeshwar.jpg');">
-		    				</div>
-	    				</div>
-	    			</div>
-	    			<div class="col-md-12 col-lg-6 pl-lg-5 py-5 d-flex align-items-center">
-	    				<div class="p-0 px-lg-5 p-lg-0">
-		    				<div class="row justify-content-start pb-3">
-				          <div class="col-md-12 heading-section ftco-animate">
-				          	<!--<span class="subheading">Welcome</span>-->
-				            <h2 class="mb-4">Parmeshwar Kr Sahu</h2>
-				            <p style="font-weight: bold;">Hey ! </p>
-				            <p>It’s me Parmeshwar Kumar Sahu. <br>
-				            	A tech learner, analyzer and a code freak. <br>
-				                As, Student is more important than a teacher likewise learner learning is important than teaching.<br>
-				                As being a code freak and tech geek , I’ll carry latest tech buzz directly to your screen.</p>
-				          </div>
-				        </div>
-				        <div class="row">
-				        	<div class="col-md-6">
-				        		<div class="media block-6 services d-block ftco-animate">
-				              <!--<div class="icon"><span class="flaticon-idea"></span></div>-->
-				              <div class="media-body">
-				                <!--<h3 class="heading mb-3">Writing</h3>
-				                <p>A small river named Duden flows by their place and supplies.</p>-->
-				              </div>
-				            </div> 
-				        	</div>
-				        	<div class="col-md-6">
-				        		<div class="media block-6 services d-block ftco-animate">
-				              <!--<div class="icon"><span class="flaticon-idea"></span></div>-->
-				              <div class="media-body">
-				                <!--<h3 class="heading mb-3">Web Design</h3>
-				                <p>A small river named Duden flows by their place and supplies.</p>-->
-				              </div>
-				            </div> 
-				        	</div>
-				        </div>
-			          <!--<div class="counter-wrap mb-0 ftco-animate d-flex mt-md-3">
-		              <div class="text p-4 pr-5 bg-primary">
-		              	<p class="mb-0">
-			                <span class="number" data-number="356">0</span>
-			                <span>Finished Articles</span>
-		                </p>
-		              </div>
-			          </div>-->
-		          </div>
-		        </div>
-	        </div>
-	      </div>
-	    </section>
-	    <br></br>
-      
 
-      <footer class="ftco-footer ftco-section img">
+        <footer class="ftco-footer ftco-section img">
 	    	<div class="overlay"></div>
 	      <div class="container">
 	        <div class="row mb-5">
@@ -235,7 +195,7 @@
 	              <ul class="list-unstyled">
 	                <li><a href="{% url 'home' %}" class="py-2 d-block">Home</a></li>
 	                <li><a href="{% url 'about' %}" class="py-2 d-block">About</a></li>
-	                <li><a href="{% url 'contact' %}" class="py-2 d-block">Blog</a></li>
+	                <li><a href="{% url 'contact' %}" class="py-2 d-block">Contact</a></li>
 	              </ul>
 	            </div>
 	          </div>

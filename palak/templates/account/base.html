@@ -1,25 +1,85 @@
-{% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
     <title>{% block head_title %}{% endblock %}</title>
     {% block extra_head %}
     {% endblock %}
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
+
+    
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
   <body>
+
+	
     
     {% block body %}
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/static/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-          <div class="col-md-9 ftco-animate pb-5 text-center">
-            <h1 class="mb-3 bread">Accounts</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Accounts <i class="ion-ios-arrow-forward"></i></span></p>
-          </div>
-        </div>
-      </div>
-    </section>
+
+	<nav id="colorlib-main-nav" role="navigation">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
+		<div class="js-fullheight colorlib-table">
+		  <div class="img" style="background-image: url('/static/images/logo.png');"></div>
+		  <div class="colorlib-table-cell js-fullheight">
+			<div class="row no-gutters">
+			  <div class="col-md-12 text-center">
+				-<h1 class="mb-4"><a href="{% url 'home' %}" class="logo"></a></h1>
+				<ul>
+				  <li><a href="{% url 'home' %}"><span>Home</span></a></li>
+				  <li class="active"><a href="{% url 'about' %}"><span>About</span></a></li>
+				  <li><a href="{% url 'contact' %}"><span>Contact</span></a></li>
+				</ul>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </nav>
+
+
+	  <div id="colorlib-page">
+		<header>
+			<div class="container">
+			  <div class="colorlib-navbar-brand">
+				<!--<a class="colorlib-logo" href="index.html">Erase</a>-->
+			  </div>
+			  <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		  </div>
+		</header>
+  
+	
+    <section class="hero-wrap js-fullheight" style="background-image: url('/static/images/bg_1.jpg');">
+		<div class="overlay"></div>
+		<div class="container-fluid px-0">
+		  <div class="row no-gutters text js-fullheight align-items-end justify-content-center" data-scrollax-parent="true">
+			<div class="col-md-12 ftco-animate text-center">
+			  <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home</a></span> <span>Accounts</span></p>
+			  <h1 class="bread">Accounts</h1>
+			</div>
+		  </div>
+		</div>
+	</section>
+
     {% if messages %}
     <section class="ftco-section">
       <div class="container">
@@ -48,5 +108,21 @@
     {% endblock %}
     {% endblock %}
     
+
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/aos.js' %}"></script>
+    <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'js/scrollax.min.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="{% static 'js/google-map.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

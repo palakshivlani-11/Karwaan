@@ -25,7 +25,7 @@ SECRET_KEY = 'u71#mzu)n&z%7ivep$kss&(t77gj##=%)94-fr3#cq-@(_a-nv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -116,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -192,4 +192,7 @@ LOGIN_REDIRECT_URL = "/profile"
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 

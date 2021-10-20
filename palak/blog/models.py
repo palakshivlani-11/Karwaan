@@ -38,6 +38,8 @@ class Categorie(models.Model):
 		return self.title
 
 
+
+
 class Post(models.Model):
 	title = models.CharField(max_length = 50)
 	overview = models.TextField()
@@ -46,6 +48,7 @@ class Post(models.Model):
 	time_upload = models.DateTimeField(auto_now_add = True)
 	auther = models.ForeignKey(Author, on_delete=models.CASCADE)
 	thumbnail = models.ImageField(upload_to = 'thumbnails')
+	image2 = models.ImageField(upload_to = 'thumbnails',blank=True,null=True)
 	publish = models.BooleanField()
 	categories = models.ManyToManyField(Categorie)
 	read = models.IntegerField(default = 0)
@@ -62,7 +65,7 @@ class Post(models.Model):
 
 
 class Contact(models.Model):
-	name = models.CharField(max_length=100)
+	name = models.CharField(max_length=100,blank=True,null=True)
 	email = models.EmailField()
 	mob = models.CharField(max_length=12)
 	mess = models.TextField()
