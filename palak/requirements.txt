@@ -15,7 +15,6 @@ blessed==1.18.1
 bs4==0.0.1
 CacheControl==0.12.6
 cachetools==4.2.2
-celery==5.1.2
 certifi==2021.5.30
 cffi==1.14.6
 channels==3.0.4
@@ -135,7 +134,6 @@ tensorflow==2.5.0
 tensorflow-estimator==2.5.0
 termcolor==1.1.0
 threadpoolctl==2.2.0
-twilio==6.62.1
 Twisted==21.7.0
 txaio==21.2.1
 typing-extensions==3.7.4.3
