@@ -29,7 +29,10 @@ urlpatterns = [
     path('search/', search, name = 'search'),
     path('profile/', profile, name='profile'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('accounts/', include('allauth.urls'))
+    path('accounts/', include('allauth.urls')),
+
+    url(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
 ]
 #urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
 #urlpatterns += static(settings.MEDIA_URL, document_root z= settings.MEDIA_ROOT)
