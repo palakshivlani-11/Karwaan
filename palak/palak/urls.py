@@ -21,6 +21,8 @@ from blog.views import index, about, post, contact, search, profile
 
 
 urlpatterns = [
+    path('jet/',include('jet.urls', 'jet')),
+    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')), 
     path('admin/', admin.site.urls),
     path('', index, name = 'home'),
     path('about/', about, name = 'about'),
